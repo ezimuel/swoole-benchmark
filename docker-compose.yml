@@ -1,0 +1,29 @@
+version: '3'
+
+services:
+
+    php:
+        image: php:7.2-cli
+        build:
+            context: .
+            dockerfile: Dockerfile
+        expose:
+            - "9501"
+        ports:
+            - "8080:9501"
+        volumes:
+            - .:/benchmark
+        command: php /benchmark/static.php
+
+    php2:
+        image: php:7.2-cli
+        build:
+            context: .
+            dockerfile: Dockerfile
+        expose:
+            - "9502"
+        ports:
+            - "8088:9502"
+        volumes:
+            - .:/benchmark
+        command: php /benchmark/static_sendfile.php
